@@ -28,7 +28,8 @@
     </Connector>
     <Parameter ID="ConfigurationID" Value="test1_cp1381" />
     <Parameter ID="TimerDeviceType" Value="SWIOTIMER" />
-    <Parameter ID="Cyclic1Duration" Value="10000" />
+    <Parameter ID="SystemTick" Value="2000" />
+    <Parameter ID="Cyclic1Duration" Value="2000" />
     <Parameter ID="Cyclic1Tolerance" Value="10000" />
     <Parameter ID="Cyclic2Duration" Value="20000" />
     <Parameter ID="Cyclic2Tolerance" Value="20000" />

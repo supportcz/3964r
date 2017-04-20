@@ -1,0 +1,17 @@
+VAR
+	step : INT;
+	FRM_xopen_0 : FRM_xopen;
+	FRM_read_0 : FRM_read;
+	dataRead : ARRAY[0..19] OF USINT;
+	FRM_rbuf_0 : FRM_rbuf;
+	dataReadLength : INT;
+	FRM_gbuf_0 : FRM_gbuf;
+	FRM_write_0 : FRM_write;
+	dataWrite : ARRAY[0..19] OF USINT;
+	dataWriteLenght : INT;
+	xopenconfig : XOPENCONFIG;
+	FRM_robuf_0 : FRM_robuf;
+	dataRead1 : ARRAY[0..19] OF USINT;
+	dataReadLenght1 : INT;
+	TON_0 : TON;
+END_VAR

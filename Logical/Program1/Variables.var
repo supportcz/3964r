@@ -4,8 +4,4 @@ VAR
 	S39Slave_0 : S39Slave;
 	txBuffer : REFERENCE TO ARRAY[0..279] OF BYTE;
 	rxBuffer : REFERENCE TO ARRAY[0..279] OF BYTE;
-	stepData : INT;
-	txData1 : ARRAY[0..279] OF USINT;
-	txData2 : ARRAY[0..279] OF USINT;
-	txData3 : ARRAY[0..279] OF USINT;
 END_VAR

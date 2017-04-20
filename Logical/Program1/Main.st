@@ -1,4 +1,5 @@
 PROGRAM _INIT
+	(* Insert code here *)
 	 
 END_PROGRAM
 
@@ -25,22 +26,9 @@ PROGRAM _CYCLIC
 			
 			S39Slave_0.enable := TRUE;
 			S39Slave_0.ident := S39SOpen_0.ident;
-			S39Slave_0.mode := s39MODE_SEND_RECV;//s39MODE_RECV_ONLY;//s39MODE_SEND_RECV;
+			S39Slave_0.mode := s39MODE_SEND_ONLY;//s39MODE_RECV_ONLY;//s39MODE_SEND_RECV;
 			S39Slave_0();
-		
-			IF NOT S39Slave_0.exec.2 THEN
-				CASE stepData OF
-					0:
-						memcpy(ADR(txBuffer), ADR(txData1),SIZEOF(txBuffer));
-						stepData := 1;
-					1:
-						memcpy(ADR(txBuffer), ADR(txData2),SIZEOF(txBuffer));
-						stepData := 2;
-					2:
-						memcpy(ADR(txBuffer), ADR(txData3),SIZEOF(txBuffer));
-						stepData := 0;
-				END_CASE
-			END_IF
+			
 	END_CASE
 	 
 END_PROGRAM
