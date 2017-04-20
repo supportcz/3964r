@@ -1,4 +1,5 @@
 VAR
+	interface3964R : Interface3964R;
 	step : INT;
 	FRM_xopen_0 : FRM_xopen;
 	FRM_read_0 : FRM_read;
@@ -10,8 +11,7 @@ VAR
 	dataWrite : ARRAY[0..19] OF USINT;
 	dataWriteLenght : INT;
 	xopenconfig : XOPENCONFIG;
-	FRM_robuf_0 : FRM_robuf;
-	dataRead1 : ARRAY[0..19] OF USINT;
-	dataReadLenght1 : INT;
-	TON_0 : TON;
+	BCC : USINT;
+	i : INT;
+	telegramType : USINT;
 END_VAR
