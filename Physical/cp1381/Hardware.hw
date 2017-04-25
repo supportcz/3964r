@@ -26,9 +26,11 @@
       <Parameter ID="InternetAddress" Value="192.168.0.10" />
       <Parameter ID="SubnetMask" Value="255.255.255.0" />
     </Connector>
+    <Connector Name="IF6">
+      <Parameter ID="CycleTime" Value="1000" />
+    </Connector>
     <Parameter ID="ConfigurationID" Value="test1_cp1381" />
     <Parameter ID="TimerDeviceType" Value="SWIOTIMER" />
-    <Parameter ID="SystemTick" Value="2000" />
     <Parameter ID="Cyclic1Duration" Value="2000" />
     <Parameter ID="Cyclic1Tolerance" Value="10000" />
     <Parameter ID="Cyclic2Duration" Value="20000" />
@@ -45,20 +47,15 @@
     <Parameter ID="Cyclic7Tolerance" Value="1000000" />
     <Parameter ID="Cyclic8Duration" Value="10000" />
     <Parameter ID="Cyclic8Tolerance" Value="30000000" />
+    <Parameter ID="SystemTick" Value="2000" />
   </Module>
   <Module Name="X20CS1030" Type="X20CS1030" Version="1.4.0.0">
     <Connection Connector="SS1" TargetModule="X20TB12" TargetConnector="SS" />
     <Connection Connector="SL" TargetModule="X20BM11" TargetConnector="SL1" />
     <Parameter ID="FunctionModel" Value="StreamCyc1xRS4xx" />
   </Module>
-  <Module Name="X20IF10E1_1" Type="X20IF10E1-1" Version="1.1.5.0">
+  <Module Name="X20IF1030" Type="X20IF1030" Version="1.1.7.0">
     <Connection Connector="SS" TargetModule="X20CP1381" TargetConnector="SS1" />
-    <Connector Name="IF1">
-      <Parameter ID="DtmRef" Value="FBDIF.Hilscher.PNIOControllerDTM2.NETX 100 RE/PNM" />
-      <Parameter ID="DtmId" Value="f40ae9e0-254c-4d47-9ad4-a3cd19fb2bde" />
-    </Connector>
-    <Parameter ID="ConfigFile" Value="X20IF10E1_1.dtm" />
-    <Parameter ID="ConfigModule" Value="asnxdb1" />
   </Module>
   <Module Name="X20TB12" Type="X20TB12" Version="1.0.0.0" />
   <Module Name="X20TB1F" Type="X20TB1F" Version="1.0.0.0" />

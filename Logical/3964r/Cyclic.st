@@ -110,7 +110,11 @@ PROGRAM _CYCLIC
 					END_CASE
 					telegramType := dataRead[0];
 					step := step + 1;
+				ELSE
+					step := 1;
 				END_IF
+			ELSE
+				step := 1;
 			END_IF
 		8:
 			FRM_gbuf_0.enable := TRUE;
@@ -164,6 +168,8 @@ PROGRAM _CYCLIC
 		12:
 			IF dataReadLength = 1 AND dataRead[0] = 16#10 THEN
 				step := step + 1;
+			ELSE
+				step := 1;
 			END_IF
 		
 		13:
@@ -251,6 +257,8 @@ PROGRAM _CYCLIC
 		
 		17:
 			IF dataReadLength = 1 AND dataRead[0] = 16#10 THEN
+				step := 1;
+			ELSE
 				step := 1;
 			END_IF
 
