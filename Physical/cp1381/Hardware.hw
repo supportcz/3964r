@@ -26,13 +26,11 @@
       <Parameter ID="InternetAddress" Value="192.168.0.10" />
       <Parameter ID="SubnetMask" Value="255.255.255.0" />
     </Connector>
-    <Connector Name="IF6">
-      <Parameter ID="CycleTime" Value="1000" />
-    </Connector>
     <Parameter ID="ConfigurationID" Value="test1_cp1381" />
     <Parameter ID="TimerDeviceType" Value="SWIOTIMER" />
-    <Parameter ID="Cyclic1Duration" Value="2000" />
-    <Parameter ID="Cyclic1Tolerance" Value="10000" />
+    <Parameter ID="SystemTick" Value="2000" />
+    <Parameter ID="Cyclic1Duration" Value="4000" />
+    <Parameter ID="Cyclic1Tolerance" Value="8000" />
     <Parameter ID="Cyclic2Duration" Value="20000" />
     <Parameter ID="Cyclic2Tolerance" Value="20000" />
     <Parameter ID="Cyclic3Duration" Value="50000" />
@@ -47,12 +45,12 @@
     <Parameter ID="Cyclic7Tolerance" Value="1000000" />
     <Parameter ID="Cyclic8Duration" Value="10000" />
     <Parameter ID="Cyclic8Tolerance" Value="30000000" />
-    <Parameter ID="SystemTick" Value="2000" />
   </Module>
   <Module Name="X20CS1030" Type="X20CS1030" Version="1.4.0.0">
     <Connection Connector="SS1" TargetModule="X20TB12" TargetConnector="SS" />
     <Connection Connector="SL" TargetModule="X20BM11" TargetConnector="SL1" />
     <Parameter ID="FunctionModel" Value="StreamCyc1xRS4xx" />
+    <Parameter ID="ExtErrStatusInfo" Value="on" />
   </Module>
   <Module Name="X20IF1030" Type="X20IF1030" Version="1.1.7.0">
     <Connection Connector="SS" TargetModule="X20CP1381" TargetConnector="SS1" />
