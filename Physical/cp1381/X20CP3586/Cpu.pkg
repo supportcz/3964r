@@ -13,7 +13,7 @@
     <Object Type="Package">AccessAndSecurity</Object>
     <Object Type="Package">DTM</Object>
   </Objects>
-  <Configuration ModuleId="X20CP1381">
+  <Configuration ModuleId="X20CP3586">
     <AutomationRuntime Version="B4.26" />
     <Build GccVersion="4.1.2" />
     <DefaultTargetMemory Tasks="UserROM" />
