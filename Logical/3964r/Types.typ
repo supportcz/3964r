@@ -1,35 +1,37 @@
 
 TYPE
 	FromFronius : 	STRUCT 
-		arcEstablished : BOOL;
+		arcPresent : BOOL;
 		limitSigal : BOOL;
 		processActive : BOOL;
+		mainCurrentSignal : BOOL;
+		torchCollisionProtection : BOOL;
 		powerSourceReady : BOOL;
 		communicationReady : BOOL;
 		errorNumber : USINT;
 		wireStickControl : BOOL;
 		robotAccess : BOOL;
-		wireDetect : BOOL;
-		shortCircuitTimeout : BOOL;
+		wireAvailable : BOOL;
+		timeoutShortCircuit : BOOL;
 		dataDocumentationReady : BOOL;
-		weldingVoltage : UINT;
-		weldingCurrent : UINT;
-		motorCurrent : USINT;
-		wireFeedSpeed : UINT;
+		actualWeldingVoltage : UINT;
+		actualWeldingCurrent : UINT;
+		actualMotorCurrent : USINT;
+		actualWireFeed : UINT;
 	END_STRUCT;
 	FromComau : 	STRUCT 
-		weldingStart : BOOL;
+		arcOn : BOOL;
 		robotReady : BOOL;
-		operatingMode0 : BOOL;
-		operatingMode1 : BOOL;
-		operatingMode2 : BOOL;
-		masterSelectionTwinBit1 : BOOL;
-		gasOpen : BOOL;
-		wireInching : BOOL;
+		bit0_OperatingModes : BOOL;
+		bit1_OperatingModes : BOOL;
+		bit2_OperatingModes : BOOL;
+		twinMasterIdentifier : BOOL;
+		gasTest : BOOL;
+		wireFeed : BOOL;
 		wireRetract : BOOL;
 		sourceErrorReset : BOOL;
 		touchSensing : BOOL;
-		torchBlowOut : BOOL;
+		torchBlowThrough : BOOL;
 		programNumber : USINT;
 		weldingSimulation : BOOL;
 		temp : ARRAY[0..19]OF USINT;

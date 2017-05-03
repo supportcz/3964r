@@ -15,4 +15,8 @@ VAR
 	i : INT;
 	telegramType : USINT;
 	stepOld : INT;
+	profinetInputByte : ARRAY[0..7] OF USINT;
+	profinetInputWord : ARRAY[0..15] OF UINT;
+	profinetOutputByte : ARRAY[0..7] OF USINT;
+	profinetOutputWord : ARRAY[0..15] OF UINT;
 END_VAR

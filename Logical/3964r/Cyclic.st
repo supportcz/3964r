@@ -1,6 +1,18 @@
 
 PROGRAM _CYCLIC
 	
+	(* read data from new Fronius *)
+	interface3964R.fromFronius.powerSourceReady := profinetInputByte[0].1;
+	interface3964R.fromFronius.processActive := profinetInputByte[0].3;
+	interface3964R.fromFronius.arcPresent := profinetInputByte[0].4;
+	interface3964R.fromFronius.mainCurrentSignal := profinetInputByte[0].6;
+
+	interface3964R.fromFronius.actualWeldingVoltage := profinetInputWord[0];
+	interface3964R.fromFronius.actualWeldingCurrent := profinetInputWord[1];
+	interface3964R.fromFronius.actualWireFeed := profinetInputWord[2];
+
+	
+	(* communication with old Fronius *)
 	REPEAT
 		stepOld := step;
 		
@@ -111,18 +123,18 @@ PROGRAM _CYCLIC
 							1:
 								interface3964R.fromComau.temp := dataRead;
 							
-								interface3964R.fromComau.weldingStart := dataRead[1].0;
+								interface3964R.fromComau.arcOn := dataRead[1].0;
 								interface3964R.fromComau.robotReady := dataRead[1].1;
-								interface3964R.fromComau.operatingMode0 := dataRead[1].2;
-								interface3964R.fromComau.operatingMode1 := dataRead[1].3;
-								interface3964R.fromComau.operatingMode2 := dataRead[1].4;
-								interface3964R.fromComau.masterSelectionTwinBit1 := dataRead[1].5;
-								interface3964R.fromComau.gasOpen := dataRead[2].0;
-								interface3964R.fromComau.wireInching := dataRead[2].1;
+								interface3964R.fromComau.bit0_OperatingModes := dataRead[1].2;
+								interface3964R.fromComau.bit1_OperatingModes := dataRead[1].3;
+								interface3964R.fromComau.bit2_OperatingModes := dataRead[1].4;
+								interface3964R.fromComau.twinMasterIdentifier := dataRead[1].5;
+								interface3964R.fromComau.gasTest := dataRead[2].0;
+								interface3964R.fromComau.wireFeed := dataRead[2].1;
 								interface3964R.fromComau.wireRetract := dataRead[2].2;
 								interface3964R.fromComau.sourceErrorReset := dataRead[2].3;
 								interface3964R.fromComau.touchSensing := dataRead[2].4;
-								interface3964R.fromComau.torchBlowOut := dataRead[2].5;
+								interface3964R.fromComau.torchBlowThrough := dataRead[2].5;
 								interface3964R.fromComau.programNumber := dataRead[4] AND 16#7F;
 								interface3964R.fromComau.weldingSimulation := dataRead[4].7;
 
@@ -155,27 +167,29 @@ PROGRAM _CYCLIC
 				CASE telegramType OF
 					4:
 						dataWrite[2] := 16#04;
-						dataWrite[3].0 := interface3964R.fromFronius.arcEstablished;//16#40;
+						dataWrite[3].0 := interface3964R.fromFronius.arcPresent;//16#40;
 						dataWrite[3].1 := interface3964R.fromFronius.limitSigal;
 						dataWrite[3].2 := interface3964R.fromFronius.processActive;
+						dataWrite[3].3 := interface3964R.fromFronius.mainCurrentSignal;
+						dataWrite[3].4 := interface3964R.fromFronius.torchCollisionProtection;
 						dataWrite[3].5 := interface3964R.fromFronius.powerSourceReady;
 						dataWrite[3].6 := interface3964R.fromFronius.communicationReady;
 						dataWrite[4] := interface3964R.fromFronius.errorNumber;//16#26;
 						dataWrite[6].0 := interface3964R.fromFronius.wireStickControl;//16#0D;
 						dataWrite[6].2 := interface3964R.fromFronius.robotAccess;
-						dataWrite[6].3 := interface3964R.fromFronius.wireDetect;
-						dataWrite[6].4 := interface3964R.fromFronius.shortCircuitTimeout;
+						dataWrite[6].3 := interface3964R.fromFronius.wireAvailable;
+						dataWrite[6].4 := interface3964R.fromFronius.timeoutShortCircuit;
 						dataWrite[6].5 := interface3964R.fromFronius.dataDocumentationReady;
 						dataWriteLenght := 7;
 					5:
 						dataWrite[2] := 16#05;
-						dataWrite[3] := UINT_TO_USINT(interface3964R.fromFronius.weldingVoltage AND 16#FF);//16#55;
-						dataWrite[4] := UINT_TO_USINT(SHR(interface3964R.fromFronius.weldingVoltage,8));//16#2E;
-						dataWrite[5] := UINT_TO_USINT(interface3964R.fromFronius.weldingCurrent AND 16#FF);//16#B4;
-						dataWrite[6] := UINT_TO_USINT(SHR(interface3964R.fromFronius.weldingCurrent,8));//16#08;
-						dataWrite[7] := interface3964R.fromFronius.motorCurrent;
-						dataWrite[8] := UINT_TO_USINT(interface3964R.fromFronius.wireFeedSpeed AND 16#FF);
-						dataWrite[9] := UINT_TO_USINT(SHR(interface3964R.fromFronius.wireFeedSpeed,8));
+						dataWrite[3] := UINT_TO_USINT(interface3964R.fromFronius.actualWeldingVoltage AND 16#FF);//16#55;
+						dataWrite[4] := UINT_TO_USINT(SHR(interface3964R.fromFronius.actualWeldingVoltage,8));//16#2E;
+						dataWrite[5] := UINT_TO_USINT(interface3964R.fromFronius.actualWeldingCurrent AND 16#FF);//16#B4;
+						dataWrite[6] := UINT_TO_USINT(SHR(interface3964R.fromFronius.actualWeldingCurrent,8));//16#08;
+						dataWrite[7] := interface3964R.fromFronius.actualMotorCurrent;
+						dataWrite[8] := UINT_TO_USINT(interface3964R.fromFronius.actualWireFeed AND 16#FF);
+						dataWrite[9] := UINT_TO_USINT(SHR(interface3964R.fromFronius.actualWireFeed,8));
 						dataWriteLenght := 10;
 					ELSE
 						dataWrite[2] := 16#06;
@@ -212,5 +226,23 @@ PROGRAM _CYCLIC
 		UNTIL step = stepOld
 		
 	END_REPEAT
-			
+	
+	(* write data to new Fronius *)
+	profinetOutputByte[7];
+	profinetOutputWord[14];
+	profinetOutputByte[0].0 := interface3964R.fromComau.arcOn;
+	profinetOutputByte[0].1 := interface3964R.fromComau.robotReady;
+	profinetOutputByte[0].2 := interface3964R.fromComau.bit0_OperatingModes;
+	profinetOutputByte[0].3 := interface3964R.fromComau.bit1_OperatingModes;
+	profinetOutputByte[0].4 := interface3964R.fromComau.bit2_OperatingModes;
+	profinetOutputByte[1].0 := interface3964R.fromComau.gasTest;
+	profinetOutputByte[1].1 := interface3964R.fromComau.wireFeed;
+	profinetOutputByte[1].2 := interface3964R.fromComau.wireRetract;
+	profinetOutputByte[1].4 := interface3964R.fromComau.touchSensing;
+	profinetOutputByte[1].5 := interface3964R.fromComau.torchBlowThrough;
+	profinetOutputByte[2].0 := interface3964R.fromComau.weldingSimulation;
+	
+	profinetOutputWord[0] := interface3964R.fromComau.programNumber;
+
+	
 END_PROGRAM
