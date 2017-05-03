@@ -34,6 +34,10 @@ TYPE
 		torchBlowThrough : BOOL;
 		programNumber : USINT;
 		weldingSimulation : BOOL;
+		powerCommandValue : UINT;
+		arcLengthCorrection : USINT;
+		pulseCorrection : USINT;
+		stubBurnOffCorrection : USINT;
 		temp : ARRAY[0..19]OF USINT;
 	END_STRUCT;
 	Interface3964R : 	STRUCT 

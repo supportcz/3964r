@@ -243,6 +243,10 @@ PROGRAM _CYCLIC
 	profinetOutputByte[2].0 := interface3964R.fromComau.weldingSimulation;
 	
 	profinetOutputWord[0] := interface3964R.fromComau.programNumber;
+	profinetOutputWord[1] := interface3964R.fromComau.powerCommandValue;
+	profinetOutputWord[2] := interface3964R.fromComau.arcLengthCorrection;
+	profinetOutputWord[3] := interface3964R.fromComau.pulseCorrection;
+	profinetOutputWord[4] := interface3964R.fromComau.stubBurnOffCorrection;
 
 	
 END_PROGRAM
