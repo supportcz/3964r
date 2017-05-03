@@ -5,9 +5,9 @@
     <Connection Connector="PN1" TargetModule="X20IF10E1_1" TargetConnector="IF1" NodeNumber="1" />
     <Parameter ID="DtmId" Value="207df88f-8d0b-476b-a90a-ff4e51565477" />
     <Parameter ID="DtmRef" Value="FBD.Hilscher.PNIOGenDevDTM2.DAP Copper.V1.09.05" />
-    <Group ID="ChannelBlocks_03186d03-6fc3-49a4-b500-2d850ebaa275" Description="Standard Image &lt;Slot 1&gt;" />
-    <Group ID="IO_InputImage_03186d03-6fc3-49a4-b500-2d850ebaa275" />
-    <Group ID="IO_OutputImage_03186d03-6fc3-49a4-b500-2d850ebaa275" />
+    <Group ID="ChannelBlocks_54764a2b-737d-4760-b2ae-f15fab32f69c" Description="Retrofit Image &lt;Slot 1&gt;" />
+    <Group ID="IO_InputImage_54764a2b-737d-4760-b2ae-f15fab32f69c" />
+    <Group ID="IO_OutputImage_54764a2b-737d-4760-b2ae-f15fab32f69c" />
   </Module>
   <Module Name="X20CP3586" Type="X20CP3586" Version="1.3.2.0">
     <Connector Name="IF2">
