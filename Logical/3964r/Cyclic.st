@@ -15,7 +15,7 @@ PROGRAM _CYCLIC
 	interface3964R.fromFronius.wireFeedSpeed := profinetInput2[8] + 256*profinetInput2[9];
 
 	
-	(* communication with old Fronius *)
+	(* communication with robot via protocol 3964r *)
 	REPEAT
 		stepOld := step;
 		
@@ -230,7 +230,7 @@ PROGRAM _CYCLIC
 		
 	END_REPEAT
 	
-	(* write data to new Fronius *)
+	(* write data to Fronius *)
 	profinetOutput1[0].0 := interface3964R.fromComau.weldingStart;
 	profinetOutput1[0].1 := interface3964R.fromComau.robotReady;
 	profinetOutput1[0].2 := interface3964R.fromComau.modesBit0;
